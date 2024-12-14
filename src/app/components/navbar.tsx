@@ -22,11 +22,11 @@ export function NavbarComp() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link className="font-bold" href="#" active>Home</Navbar.Link>
-        <Navbar.Link className="font-bold" href="#">About</Navbar.Link>
-        <Navbar.Link className="font-bold" href="#">Services</Navbar.Link>
-        <Navbar.Link className="font-bold" href="#">Pricing</Navbar.Link>
-        <Navbar.Link className="font-bold" href="#">Contact</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="#" active>Home</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="#">Agents</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="#">Stats</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="#">Pricing</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="#">Contact</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
