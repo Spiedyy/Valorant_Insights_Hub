@@ -1,9 +1,8 @@
 "use client";
 
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Logo from "../assets/image.jpg";
-import { motion } from "framer-motion";
 
 export function NavbarComp() {
   return (
@@ -13,20 +12,12 @@ export function NavbarComp() {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white pl-4">Valorant Insights</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 1 }}
-          className="bg-neutral-800 p-2 px-4 hover:bg-neutral-700 text-white rounded-md font-bold"
-        >Login
-        </motion.button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link className="font-bold text-neutral-500" href="#" active>Home</Navbar.Link>
-        <Navbar.Link className="font-bold text-neutral-500" href="#">Agents</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="/" active>Home</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="../agents">Agents</Navbar.Link>
         <Navbar.Link className="font-bold text-neutral-500" href="#">Stats</Navbar.Link>
-        <Navbar.Link className="font-bold text-neutral-500" href="#">Pricing</Navbar.Link>
-        <Navbar.Link className="font-bold text-neutral-500" href="#">Contact</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
