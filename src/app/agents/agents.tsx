@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import ThreeDotsWave from "@/app/components/Threedotswave";
 
 export default function AgentsComp() {
   const [agents, setAgents] = useState([]);
   const [selectedAgent, setSelectedAgent] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state added
 
   const closeModal = () => setSelectedAgent(null);
   const router = useRouter();
@@ -18,6 +20,8 @@ export default function AgentsComp() {
         setAgents(data.data);
       } catch (error) {
         console.error("Failed to fetch agents:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -41,31 +45,37 @@ export default function AgentsComp() {
 
   return (
     <>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="container mx-auto p-4 transform translate-z-0"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {agents.map((agent) => (
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              key={agent.uuid}
-              variants={cardVariants}
-              className="bg-neutral-900 shadow-md rounded-lg overflow-hidden cursor-pointer transform translate-z-0"
-              onClick={() => setSelectedAgent(agent)}
-            >
-              <div className="flex justify-center items-center">
-                <img src={agent.displayIcon} alt={agent.displayName} />
-              </div>
-              <div className="p-4">
-                <h1 className="font-bold text-xl">{agent.displayName}</h1>
-              </div>
-            </motion.div>
-          ))}
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+            <ThreeDotsWave />
         </div>
-      </motion.div>
+      ) : (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="container mx-auto p-4 transform translate-z-0"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {agents.map((agent) => (
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                key={agent.uuid}
+                variants={cardVariants}
+                className="bg-neutral-900 shadow-md rounded-lg overflow-hidden cursor-pointer transform translate-z-0"
+                onClick={() => setSelectedAgent(agent)}
+              >
+                <div className="flex justify-center items-center">
+                  <img src={agent.displayIcon} alt={agent.displayName} />
+                </div>
+                <div className="p-4">
+                  <h1 className="font-bold text-xl">{agent.displayName}</h1>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       <AnimatePresence>
         {selectedAgent && (
