@@ -20,7 +20,7 @@ export function NavbarComp() {
       <Navbar.Collapse>
         <Navbar.Link className="font-bold text-neutral-500" href="/" active={pathname === '/'}>Home</Navbar.Link>
         <Navbar.Link className="font-bold text-neutral-500" href="../agents" active={pathname === '/agents'}>Agents</Navbar.Link>
-        <Navbar.Link className="font-bold text-neutral-500" href="/" active={pathname === 'stats'}>Stats</Navbar.Link>
+        <Navbar.Link className="font-bold text-neutral-500" href="../stats" active={pathname === '/stats'}>Stats</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
