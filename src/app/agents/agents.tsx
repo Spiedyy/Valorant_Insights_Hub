@@ -7,7 +7,7 @@ import ThreeDotsWave from "@/app/components/Threedotswave";
 export default function AgentsComp() {
   const [agents, setAgents] = useState([]);
   const [selectedAgent, setSelectedAgent] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state added
+  const [loading, setLoading] = useState(true);
 
   const closeModal = () => setSelectedAgent(null);
   const router = useRouter();
@@ -21,7 +21,9 @@ export default function AgentsComp() {
       } catch (error) {
         console.error("Failed to fetch agents:", error);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       }
     };
 
