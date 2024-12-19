@@ -69,38 +69,52 @@ export default function AgentComp() {
                   alt={agent.displayName}
                 />
               </div>
-              <div className="w-full max-w-xl h-auto rounded-lg overflow-hidden flex flex-col">
-                <nav className="bg-neutral-800 p-2 rounded-t-lg border-b border-neutral-700 h-11">
-                  <ul className="flex w-full p-0 m-0 list-none font-medium text-sm">
-                    {tabs.map((item) => (
-                      <motion.li
-                        key={item.label}
-                        initial={false}
-                        animate={{
-                          backgroundColor:
-                            item === selectedTab ? "#eee" : "#eee0",
-                        }}
-                        className="relative flex-1 px-4 py-2 cursor-pointer flex justify-center items-center"
-                        onClick={() => setSelectedTab(item)}
-                      >
-                        {`${item.label}`}
-                        {item === selectedTab ? (
-                          <motion.div
-                            className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500"
-                            layoutId="underline"
-                            transition={{
-                              type: "spring",
-                              stiffness: 500,
-                              damping: 30,
-                              duration: 0.5,
-                            }}
-                          />
-                        ) : null}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </nav>
+              <div className="flex justify-center items-center p-4">
+                <div className="w-full max-w-xl h-auto rounded-lg overflow-hidden flex flex-col">
+                  <div className="bg-neutral-800 p-2 rounded-t-lg border-b border-neutral-700 h-11">
+                    <ul className="flex w-full p-0 m-0 list-none font-medium text-sm">
+                      {tabs.map((item) => (
+                        <motion.li
+                          key={item.label}
+                          initial={false}
+                          className="relative flex-1 px-4 py-2 cursor-pointer flex justify-center items-center"
+                          onClick={() => setSelectedTab(item)}
+                        >
+                          {`${item.label}`}
+                          {item === selectedTab ? (
+                            <motion.div
+                              className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500"
+                              layoutId="underline"
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 30,
+                                duration: 0.5,
+                              }}
+                            />
+                          ) : null}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
+              <motion.div className="px-8 p-4">
+                <div key={selectedTab.label}>
+                  {selectedTab === tabs[0] && agent.description}
+                  {selectedTab === tabs[1] &&
+                    agent.role.displayName + " - " + agent.role.description}
+                  {selectedTab === tabs[2] &&
+                    agent.abilities.map((ability) => (
+                      <div key={ability.displayName} className="mb-4">
+                        <h2 className="font-bold text-lg">
+                          {ability.displayName}
+                        </h2>
+                        <p>{ability.description}</p>
+                      </div>
+                    ))}
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
